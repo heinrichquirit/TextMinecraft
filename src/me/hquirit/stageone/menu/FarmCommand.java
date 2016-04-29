@@ -10,7 +10,7 @@ public class FarmCommand extends BaseCommand {
 	public FarmCommand()
 	{
 		cmd = "farm";
-		description = "Farm resources for suvivability and stat increase. "
+		description = "Farm resources for suvivability and increase your stats. "
 				+ "Obtain either wheat or seeds as you farm"
 				+ "Farm 3 times in total to increase your level.";
 	}
@@ -22,6 +22,8 @@ public class FarmCommand extends BaseCommand {
 		Utils.print("You have chosen to farm for the day.");
 		Utils.print(description);
 	}
+	
+	
 	
 	public String getName()
 	{

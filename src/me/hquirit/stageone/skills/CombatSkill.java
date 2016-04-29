@@ -9,21 +9,36 @@ public class CombatSkill extends Skill
 	
 	public CombatSkill()
 	{
-		name = "";
+		name = "CombatSkill";
 		skillLevel = 0;
 		selectionCount = 0;
 	}
 	
-	public CombatSkill(String name, int skillLevel, int selectionCount)
+	public CombatSkill(int skillLevel, int selectionCount)
 	{
-		this.name = name;
+		name = "CombatSkill";
 		this.skillLevel = skillLevel;
 		this.selectionCount = selectionCount;
+	}
+	
+	public String getName()
+	{
+		return name;
+	}
+	
+	public void setSkillLevel(int skillLevel)
+	{
+		this.skillLevel = skillLevel;
 	}
 	
 	public int getSkillLevel()
 	{
 		return skillLevel;
+	}
+	
+	public void setSelectionCount(int selectionCount)
+	{
+		this.selectionCount = selectionCount;
 	}
 	
 	public int getSelectionCount()

@@ -9,7 +9,7 @@ import me.hquirit.stageone.utils.Utils;
 public class CommandMenu 
 {
 
-	Player player = new Player();
+	private Player player = new Player();
 	
 	public CommandMenu()
 	{
@@ -19,9 +19,11 @@ public class CommandMenu
 	{
 		Scanner input = new Scanner(System.in);
 		
-		Utils.print("Please select an option.");
+		Utils.print("==============================");
+		Utils.print("Input is case sensitive, please select an option.");
 		Utils.print("1. New Character");
 		Utils.print("2. Load Character");
+		Utils.print("==============================");
 		
 		int selection = input.nextInt();
 		
@@ -80,17 +82,37 @@ public class CommandMenu
 	{
 		Scanner input = new Scanner(System.in);
 		
+		Utils.print("==============================");
 		Utils.print("Please enter one of the following commands.");
 		Utils.print("Today is a new a day, what would you like to do?");
 		Utils.print("Farm");
 		Utils.print("Explore");
 		Utils.print("Kill_mobs");
 		Utils.print("Exit");
+		Utils.print("==============================");
 		
 		String cmd = input.nextLine();
 		if (cmd.equalsIgnoreCase("farm"))
 		{
 			new FarmCommand().execute(player);
+			// Save player/all data
+			File playerData = new File("players/" + player.getName() + ".dat");
+			ObjectFileWriter writer = new ObjectFileWriter(playerData, player);
+			writer.save();
+			Utils.print("Your progress has been saved.");
+			Utils.print("==============================");
+			Utils.print("Would you like to continue? Hit y/n");
+			// Consume new-line leftover
+			input.nextLine();
+			String answer = input.nextLine();
+			if (answer.equalsIgnoreCase("y"))
+			{
+				runTaskMenu();
+			}
+			else if (answer.equalsIgnoreCase("n"))
+			{
+				Utils.print("You have exited the game.");
+			}
 		}
 		else if (cmd.equalsIgnoreCase("exit"))
 		{

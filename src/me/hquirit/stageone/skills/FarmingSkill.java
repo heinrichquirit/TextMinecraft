@@ -15,16 +15,31 @@ public class FarmingSkill extends Skill
 		selectionCount = 0;
 	}
 	
-	public FarmingSkill(String name, int skillLevel, int selectionCount)
+	public FarmingSkill(int skillLevel, int selectionCount)
 	{
-		this.name = name;
+		name = "FarmingSkill";
 		this.skillLevel = skillLevel;
 		this.selectionCount = selectionCount;
+	}
+	
+	public String getName()
+	{
+		return name;
+	}
+	
+	public void setSkillLevel(int skillLevel)
+	{
+		this.skillLevel	= skillLevel;
 	}
 	
 	public int getSkillLevel()
 	{
 		return skillLevel;
+	}
+	
+	public void setSelectionCount(int selectionCount)
+	{
+		this.selectionCount = selectionCount;
 	}
 	
 	public int getSelectionCount()

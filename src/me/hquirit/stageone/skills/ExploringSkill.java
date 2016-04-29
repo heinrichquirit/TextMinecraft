@@ -9,21 +9,36 @@ public class ExploringSkill extends Skill
 	
 	public ExploringSkill()
 	{
-		name = "";
+		name = "ExploringSkill";
 		skillLevel = 0;
 		selectionCount = 0;
 	}
 	
-	public ExploringSkill(String name, int skillLevel, int selectionCount)
+	public ExploringSkill(int skillLevel, int selectionCount)
 	{
-		this.name = name;
+		name = "ExploringSkill";
 		this.skillLevel = skillLevel;
 		this.selectionCount = selectionCount;
+	}
+	
+	public String getName()
+	{
+		return name;
+	}
+	
+	public void setSkillLevel(int skillLevel)
+	{
+		this.skillLevel = skillLevel;
 	}
 	
 	public int getSkillLevel()
 	{
 		return skillLevel;
+	}
+	
+	public void setSelectionCount(int selectionCount)
+	{
+		this.selectionCount = selectionCount;
 	}
 	
 	public int getSelectionCount()

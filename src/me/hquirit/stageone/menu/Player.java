@@ -2,6 +2,12 @@ package me.hquirit.stageone.menu;
 
 import java.io.Serializable;
 
+import me.hquirit.stageone.skills.CombatSkill;
+import me.hquirit.stageone.skills.ExploringSkill;
+import me.hquirit.stageone.skills.FarmingSkill;
+import me.hquirit.stageone.skills.MageSkill;
+import me.hquirit.stageone.skills.PlayerInventory;
+
 public class Player implements Serializable
 {
 
@@ -15,17 +21,17 @@ public class Player implements Serializable
 	private int currentHp;
 	private int maxMana;
 	private int currentMana;
+	private PlayerInventory inventory;
 	
 	/* Stats */
 	// Farming Skill (Increase the amount you gain from resources) Max Level 5 for all skills
 	// Exploring Skill (Higher percent chance of obtaining random items) 10% increase per level
 	// Combat Skill (Increase Damage output) 
 	// Mage Skill (Increase Magic Damage Output)
-	private int farmingLvl;
-	private int exploringLvl;
-	private int combatLvl;
-	private int mageLvl;
-	private int[] skills = {farmingLvl, exploringLvl, combatLvl, mageLvl};
+	private CombatSkill cSkill;
+	private ExploringSkill eSkill;
+	private FarmingSkill fSkill;
+	private MageSkill mSkill;
 	
 	public Player()
 	{
@@ -34,24 +40,12 @@ public class Player implements Serializable
 		currentHp = 100;
 		maxMana = 100;
 		currentMana = 100;
-		farmingLvl = 1;
-		exploringLvl = 1;
-		combatLvl = 1;
-		mageLvl = 1;
-	}
-	
-	public Player(String name, int maxHp, int currentHp, int maxMana, int currentMana, 
-			int farmingLvl, int exploringLvl, int combatLvl, int mageLvl)
-	{
-		setName(name);
-		setMaxHp(maxHp);
-		setCurrentHp(currentHp);
-		setMaxMana(maxMana);
-		setCurrentMana(currentMana);
-		setSkillLevel(0, farmingLvl);
-		setSkillLevel(1, exploringLvl);
-		setSkillLevel(2, combatLvl);
-		setSkillLevel(3, mageLvl);
+		inventory = new PlayerInventory();
+		// Skills
+		cSkill = new CombatSkill();
+		eSkill = new ExploringSkill();
+		fSkill = new FarmingSkill();
+		mSkill = new MageSkill();
 	}
 	
 	public void setName(String name) 
@@ -104,65 +98,29 @@ public class Player implements Serializable
 		return currentMana;
 	}
 	
-	public void setSkillLevel(int arg, int level)
+	public PlayerInventory getInventory()
 	{
-		skills[arg] = level;
+		return inventory;
 	}
 	
-	public int getSkillLevel(int arg)
+	public CombatSkill getCombatSkill()
 	{
-		return skills[arg];
+		return cSkill;
 	}
 	
-	/*
-	
-	public Player name(String name)
+	public ExploringSkill getExploringSkill()
 	{
-		this.name = name;
-		return this;
+		return eSkill;
 	}
 	
-	public Player health(int health)
+	public FarmingSkill getFarmingSkill()
 	{
-		this.health = health;
-		return this;
+		return fSkill;
 	}
 	
-	public Player mana(int mana)
+	public MageSkill getMageSkill()
 	{
-		this.mana = mana;
-		return this;
+		return mSkill;
 	}
-	
-	public Player farmingLvl(int level)
-	{
-		farmingLvl = level;
-		return this;
-	}
-	
-	public Player exploringLvl(int level)
-	{
-		exploringLvl = level;
-		return this;
-	}
-	
-	public Player combatLvl(int level)
-	{
-		combatLvl = level;
-		return this;
-	}
-	
-	public Player mageLvl(int level)
-	{
-		mageLvl = level;
-		return this;
-	}
-	
-	public Player build()
-	{
-		return new Player(name, health, mana, farmingLvl, exploringLvl, combatLvl, mageLvl);
-	}
-	
-	*/
 	
 }
