@@ -1,7 +1,14 @@
 package me.hquirit.stageone.skills;
 
-public class Skill
+import java.io.Serializable;
+
+public class Skill implements Serializable
 {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8634634249660722583L;
+	
 	private String name;
 	/* Max Count 3
 	 * This variable stores how many times the user has selected this option in 
@@ -17,11 +24,33 @@ public class Skill
 		selectionCount = 0;
 	}
 	
+	public String getName()
+	{
+		return name;
+	}
+	
+	public void increaseCount()
+	{
+		if (skillLevel != 3)
+		{
+			skillLevel += 1;
+		}
+	}
+	
+	public void decreaseCount()
+	{
+		if (skillLevel != 0)
+		{
+			skillLevel -= 1;
+		}
+	}
+	
 	public void levelUp()
 	{
 		if (skillLevel != 5)
 		{
 			skillLevel += 1;
+			selectionCount = 0;
 		}
 	}
 	
@@ -30,6 +59,7 @@ public class Skill
 		if (skillLevel != 0)
 		{
 			skillLevel -= 1;
+			selectionCount = 0;
 		}
 	}
 	

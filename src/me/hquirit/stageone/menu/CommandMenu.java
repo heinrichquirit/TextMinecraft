@@ -3,6 +3,8 @@ package me.hquirit.stageone.menu;
 import java.io.File;
 import java.util.Scanner;
 
+import me.hquirit.stageone.commands.FarmCommand;
+import me.hquirit.stageone.commands.ViewStatsCommand;
 import me.hquirit.stageone.utils.ObjectFileWriter;
 import me.hquirit.stageone.utils.Utils;
 
@@ -23,6 +25,7 @@ public class CommandMenu
 		Utils.print("Input is case sensitive, please select an option.");
 		Utils.print("1. New Character");
 		Utils.print("2. Load Character");
+		Utils.print("3. View All Player Stats");
 		Utils.print("==============================");
 		
 		int selection = input.nextInt();
@@ -70,6 +73,9 @@ public class CommandMenu
 					runTaskMenu();
 				}
 				break;
+			case 3:
+				Utils.print("Viewing all player statistics in a window dialog, please wait...");
+				// Do stuff
 			default:
 				Utils.print("Option does not exist.");
 				runInitialMenu();
@@ -85,14 +91,19 @@ public class CommandMenu
 		Utils.print("==============================");
 		Utils.print("Please enter one of the following commands.");
 		Utils.print("Today is a new a day, what would you like to do?");
-		Utils.print("Farm");
-		Utils.print("Explore");
-		Utils.print("Kill_mobs");
+		Utils.print("View_stats - View your current stats");
+		Utils.print("Farm - Obtain resources");
+		Utils.print("Explore - Discover new items");
+		Utils.print("Kill_mobs - Fight new mobs");
 		Utils.print("Exit");
 		Utils.print("==============================");
 		
 		String cmd = input.nextLine();
-		if (cmd.equalsIgnoreCase("farm"))
+		if (cmd.equalsIgnoreCase("view_stats"))
+		{
+			new ViewStatsCommand().execute(player);
+		}
+		else if (cmd.equalsIgnoreCase("farm"))
 		{
 			new FarmCommand().execute(player);
 			// Save player/all data
@@ -102,8 +113,6 @@ public class CommandMenu
 			Utils.print("Your progress has been saved.");
 			Utils.print("==============================");
 			Utils.print("Would you like to continue? Hit y/n");
-			// Consume new-line leftover
-			input.nextLine();
 			String answer = input.nextLine();
 			if (answer.equalsIgnoreCase("y"))
 			{

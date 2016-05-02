@@ -1,6 +1,6 @@
-package me.hquirit.stageone.mobs;
+package me.hquirit.stageone.animals;
 
-public class Cow extends Animal 
+public class Cow 
 {
 
 	private String animalType;

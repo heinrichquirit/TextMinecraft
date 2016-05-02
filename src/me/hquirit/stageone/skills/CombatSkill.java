@@ -1,8 +1,15 @@
 package me.hquirit.stageone.skills;
 
-public class CombatSkill extends Skill
+import java.io.Serializable;
+
+public class CombatSkill extends Skill implements Serializable
 {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5071027997445524912L;
+	
 	private String name;
 	private int skillLevel;
 	private int selectionCount;

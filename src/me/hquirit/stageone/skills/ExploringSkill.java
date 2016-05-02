@@ -1,7 +1,14 @@
 package me.hquirit.stageone.skills;
 
-public class ExploringSkill extends Skill
+import java.io.Serializable;
+
+public class ExploringSkill extends Skill implements Serializable
 {
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5155532481339206494L;
 	
 	private String name;
 	private int skillLevel;

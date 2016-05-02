@@ -1,8 +1,15 @@
 package me.hquirit.stageone.skills;
 
-public class MageSkill extends Skill
+import java.io.Serializable;
+
+public class MageSkill extends Skill implements Serializable
 {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6511365785150429193L;
+	
 	private String name;
 	private int skillLevel;
 	// How many times the character has selected this skill, it will reset after 3 counts and level up the skill

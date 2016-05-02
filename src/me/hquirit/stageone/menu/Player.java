@@ -7,6 +7,7 @@ import me.hquirit.stageone.skills.ExploringSkill;
 import me.hquirit.stageone.skills.FarmingSkill;
 import me.hquirit.stageone.skills.MageSkill;
 import me.hquirit.stageone.skills.PlayerInventory;
+import me.hquirit.stageone.utils.Utils;
 
 public class Player implements Serializable
 {
@@ -18,9 +19,9 @@ public class Player implements Serializable
 	
 	private String name;
 	private int maxHp;
-	private int currentHp;
 	private int maxMana;
-	private int currentMana;
+	private int physDmgOutput;
+	private int mgcDmgOutput;
 	private PlayerInventory inventory;
 	
 	/* Stats */
@@ -37,15 +38,20 @@ public class Player implements Serializable
 	{
 		name = "";
 		maxHp = 100;
-		currentHp = 100;
 		maxMana = 100;
-		currentMana = 100;
+		physDmgOutput = 1;
+		mgcDmgOutput = 1;
 		inventory = new PlayerInventory();
 		// Skills
 		cSkill = new CombatSkill();
 		eSkill = new ExploringSkill();
 		fSkill = new FarmingSkill();
 		mSkill = new MageSkill();
+	}
+	
+	public void sendMessage(String msg)
+	{
+		Utils.print(msg);
 	}
 	
 	public void setName(String name) 
@@ -68,16 +74,6 @@ public class Player implements Serializable
 		return maxHp;
 	}
 	
-	public void setCurrentHp(int currHp) 
-	{
-		currentHp = currHp;
-	}
-	
-	public int getCurrentHp()
-	{
-		return currentHp;
-	}
-	
 	public void setMaxMana(int maxMana)
 	{
 		this.maxMana = maxMana;
@@ -88,14 +84,24 @@ public class Player implements Serializable
 		return maxMana;
 	}
 	
-	public void setCurrentMana(int currMana)
+	public void setPhysDamage(int dmg)
 	{
-		this.currentMana = currMana;
+		physDmgOutput = dmg;
 	}
 	
-	public int getCurrentMana()
+	public int getPhysDamage()	
 	{
-		return currentMana;
+		return physDmgOutput;
+	}
+	
+	public void setMagicDamage(int dmg)
+	{
+		mgcDmgOutput = dmg;
+	}
+	
+	public int getMagicDamage()
+	{
+		return mgcDmgOutput;
 	}
 	
 	public PlayerInventory getInventory()

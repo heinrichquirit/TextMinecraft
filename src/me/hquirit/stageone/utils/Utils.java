@@ -6,8 +6,10 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+
 import me.hquirit.stageone.menu.Player;
-import me.hquirit.stageone.menu.Stage1;
 
 public class Utils 
 {
