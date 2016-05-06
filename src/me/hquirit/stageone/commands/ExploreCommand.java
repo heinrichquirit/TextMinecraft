@@ -30,7 +30,7 @@ public class ExploreCommand extends BaseCommand
 		String cobble = "Cobblestone";
 		String coal = "Coal";
 		int amount = 1;
-		//Utils.debug(player.getExploringSkill());
+		Utils.debug(player.getExploringSkill());
 		if (n == 0)
 		{
 			if (player.getInventory().containsItem(cobble))
@@ -61,7 +61,7 @@ public class ExploreCommand extends BaseCommand
 		// If count is 3, level up skill
 		if (player.getExploringSkill().getSelectionCount() == 3)
 		{
-			if (player.getFarmingSkill().getSkillLevel() == 5)
+			if (player.getExploringSkill().getSkillLevel() == 5)
 			{
 				return;
 				// Stop the user from leveling up

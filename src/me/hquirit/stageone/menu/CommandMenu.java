@@ -15,8 +15,9 @@ import me.hquirit.stageone.utils.Utils;
 public class CommandMenu 
 {
 	/*
-	 * FIX: MAX LEVEL FOR FARMING SKILL
-	 * FIX: ITEM AMOUNT FOR COAL AND COBBLE
+	 * FIX: ITEM DROP AMOUNT FOR COAL AND COBBLE
+	 * COMPLETE: VIEW ALL PLAYER STATS
+	 * COMPLETE: KILL MOBS COMMAND
 	 */
 
 	private Player player = new Player();

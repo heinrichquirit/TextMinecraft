@@ -1,4 +1,4 @@
-package me.hquirit.stageone.skills;
+package me.hquirit.stageone.utils;
 
 import java.io.Serializable;
 import java.util.HashMap;

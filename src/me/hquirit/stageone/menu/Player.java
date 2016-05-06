@@ -6,7 +6,7 @@ import me.hquirit.stageone.skills.CombatSkill;
 import me.hquirit.stageone.skills.ExploringSkill;
 import me.hquirit.stageone.skills.FarmingSkill;
 import me.hquirit.stageone.skills.MageSkill;
-import me.hquirit.stageone.skills.PlayerInventory;
+import me.hquirit.stageone.utils.PlayerInventory;
 import me.hquirit.stageone.utils.Utils;
 
 public class Player implements Serializable
