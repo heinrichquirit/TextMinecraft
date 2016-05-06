@@ -17,8 +17,8 @@ public class ViewStatsCommand extends BaseCommand
 	{
 		cmd = "view_stats";
 		description = "You can view certain attributes of your character.\n"
-				+ "These include information about your health and mana\n"
-				+ "as well inventory contents and skill levels.";
+				    + "These include information about your health and mana\n"
+				    + "as well inventory contents and skill levels.";
 	}
 	
 	public void execute(Player player) 
@@ -34,7 +34,7 @@ public class ViewStatsCommand extends BaseCommand
 			for (Entry<String, Integer> entries : playerMap.entrySet())
 			{
 				data[count][0] = entries.getKey();
-				data[count][1] = entries.getValue();
+				data[count][1] = entries.getValue(); // Fix
 				count++;
 			}
 		}

@@ -29,40 +29,6 @@ public class Skill implements Serializable
 		return name;
 	}
 	
-	public void increaseCount()
-	{
-		if (skillLevel != 3)
-		{
-			skillLevel += 1;
-		}
-	}
-	
-	public void decreaseCount()
-	{
-		if (skillLevel != 0)
-		{
-			skillLevel -= 1;
-		}
-	}
-	
-	public void levelUp()
-	{
-		if (skillLevel != 5)
-		{
-			skillLevel += 1;
-			selectionCount = 0;
-		}
-	}
-	
-	public void levelDown()
-	{
-		if (skillLevel != 0)
-		{
-			skillLevel -= 1;
-			selectionCount = 0;
-		}
-	}
-	
 	/**
 	 * Get current skill level
 	 * @return

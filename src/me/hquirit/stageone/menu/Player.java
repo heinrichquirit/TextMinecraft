@@ -26,7 +26,8 @@ public class Player implements Serializable
 	
 	/* Stats */
 	// Farming Skill (Increase the amount you gain from resources) Max Level 5 for all skills
-	// Exploring Skill (Higher percent chance of obtaining random items) 10% increase per level
+	// Exploring Skill (Higher percent chance of obtaining random items) 1x, 2x, 3x, 4x, 5x item drop amount will be
+	// multiplied by the numbers in accordance to the skill level
 	// Combat Skill (Increase Damage output) 
 	// Mage Skill (Increase Magic Damage Output)
 	private CombatSkill cSkill;

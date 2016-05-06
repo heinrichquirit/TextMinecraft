@@ -6,13 +6,26 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 
-import javax.swing.JOptionPane;
-import javax.swing.JTable;
-
 import me.hquirit.stageone.menu.Player;
+import me.hquirit.stageone.skills.Skill;
 
 public class Utils 
 {
+	public static void debug(Skill skill)
+	{
+		print("SEL COUNT: " + skill.getSelectionCount());
+		print("SKILL LVL: " + skill.getSkillLevel());
+	}
+	
+	public static boolean notEmpty(String dir)
+	{
+		File directory = new File(dir + "/");
+		if (directory.isDirectory())
+		{
+			return (directory.listFiles().length > 0);
+		}
+		return false;
+	}
 	
 	public static boolean fileExists(String name)
 	{

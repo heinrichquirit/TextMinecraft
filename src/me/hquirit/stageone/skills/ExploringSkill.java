@@ -52,5 +52,34 @@ public class ExploringSkill extends Skill implements Serializable
 	{
 		return selectionCount;
 	}
+
+	public void increaseCount()
+	{
+		if (selectionCount < 3)
+		{
+			selectionCount += 1;
+		}
+	}
+	
+	public void decreaseCount()
+	{
+		if (selectionCount > 0)
+		{
+			selectionCount -= 1;
+		}
+	}
+	
+	public void levelUp()
+	{
+		if (skillLevel == 5)
+		{
+			skillLevel += 0;
+		}
+		else if (skillLevel <= 5 && selectionCount == 3)
+		{
+			skillLevel += 1;
+			selectionCount = 0;
+		}
+	}
 	
 }

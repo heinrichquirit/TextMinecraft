@@ -1,8 +1,12 @@
 package me.hquirit.stageone.menu;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
+import me.hquirit.stageone.commands.ExploreCommand;
 import me.hquirit.stageone.commands.FarmCommand;
 import me.hquirit.stageone.commands.ViewStatsCommand;
 import me.hquirit.stageone.utils.ObjectFileWriter;
@@ -10,11 +14,21 @@ import me.hquirit.stageone.utils.Utils;
 
 public class CommandMenu 
 {
+	/*
+	 * FIX: MAX LEVEL FOR FARMING SKILL
+	 * FIX: ITEM AMOUNT FOR COAL AND COBBLE
+	 */
 
 	private Player player = new Player();
+	private List<String> names = new ArrayList<String>();
 	
 	public CommandMenu()
 	{
+		// Populate names array list
+		for (Player p : Stage1.getInstance().getPlayers())
+		{
+			names.add(p.getName());
+		}
 	}
 	
 	public void runInitialMenu()
@@ -58,6 +72,13 @@ public class CommandMenu
 				break;
 			case 2:
 				Utils.print("Please enter a characters name you wish to load.");
+				if (Utils.notEmpty("players"))
+				{
+					for (String name : names)
+					{
+						Utils.print("\t- " + name);
+					}
+				}
 				while(input.hasNext())
 				{
 					// Consume new-line leftover
@@ -88,7 +109,7 @@ public class CommandMenu
 	{
 		Scanner input = new Scanner(System.in);
 		
-		Utils.print("==============================");
+		Utils.print("\n==============================");
 		Utils.print("Please enter one of the following commands.");
 		Utils.print("Today is a new a day, what would you like to do?");
 		Utils.print("View_stats - View your current stats");
@@ -96,7 +117,7 @@ public class CommandMenu
 		Utils.print("Explore - Discover new items");
 		Utils.print("Kill_mobs - Fight new mobs");
 		Utils.print("Exit");
-		Utils.print("==============================");
+		Utils.print("==============================\n");
 		
 		String cmd = input.nextLine();
 		if (cmd.equalsIgnoreCase("view_stats"))
@@ -106,13 +127,34 @@ public class CommandMenu
 		else if (cmd.equalsIgnoreCase("farm"))
 		{
 			new FarmCommand().execute(player);
-			// Save player/all data
-			File playerData = new File("players/" + player.getName() + ".dat");
-			ObjectFileWriter writer = new ObjectFileWriter(playerData, player);
-			writer.save();
-			Utils.print("Your progress has been saved.");
-			Utils.print("==============================");
-			Utils.print("Would you like to continue? Hit y/n");
+			saveData(input);
+		}
+		else if (cmd.equalsIgnoreCase("explore"))
+		{
+			new ExploreCommand().execute(player);
+			saveData(input);
+		}
+		else if (cmd.equalsIgnoreCase("exit"))
+		{
+			Utils.print("You have exited the program.");
+		}
+		else
+		{
+			Utils.print("That command does not exist!");
+		}
+	}
+	
+	private void saveData(Scanner input)
+	{
+		// Save player/all data
+		File playerData = new File("players/" + player.getName() + ".dat");
+		ObjectFileWriter writer = new ObjectFileWriter(playerData, player);
+		writer.save();
+		Utils.print("Your progress has been saved.");
+		Utils.print("==============================");
+		Utils.print("Would you like to continue? Hit y/n");
+		try 
+		{
 			String answer = input.nextLine();
 			if (answer.equalsIgnoreCase("y"))
 			{
@@ -123,13 +165,9 @@ public class CommandMenu
 				Utils.print("You have exited the game.");
 			}
 		}
-		else if (cmd.equalsIgnoreCase("exit"))
+		catch(NoSuchElementException e)
 		{
-			Utils.print("You have exited the program.");
-		}
-		else
-		{
-			Utils.print("That command does not exist!");
+			// This stops the error that is caused when the users exits with no input
 		}
 	}
 	
