@@ -12,11 +12,6 @@ import me.hquirit.stageone.skills.Skill;
 public class Utils 
 {
 	
-	public static void printf(String s, Object... args)
-	{
-		System.out.printf(s, args);
-	}
-	
 	public static void debug(Skill skill)
 	{
 		print("SEL COUNT: " + skill.getSelectionCount());

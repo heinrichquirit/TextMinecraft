@@ -19,7 +19,6 @@ public class Player implements Serializable
 	
 	private String name;
 	private int maxHp;
-	private int maxMana;
 	private int physDmgOutput;
 	private int mgcDmgOutput;
 	private PlayerInventory inventory;
@@ -39,7 +38,6 @@ public class Player implements Serializable
 	{
 		name = "";
 		maxHp = 100;
-		maxMana = 100;
 		physDmgOutput = 25;
 		mgcDmgOutput = 25;
 		inventory = new PlayerInventory();
@@ -53,6 +51,11 @@ public class Player implements Serializable
 	public void sendMessage(String msg)
 	{
 		Utils.print(msg);
+	}
+	
+	public void sendFMessage(String msg, Object... args) 
+	{
+		System.out.printf(msg + "\n", args);
 	}
 	
 	public void setName(String name) 
@@ -73,16 +76,6 @@ public class Player implements Serializable
 	public int getMaxHp()
 	{
 		return maxHp;
-	}
-	
-	public void setMaxMana(int maxMana)
-	{
-		this.maxMana = maxMana;
-	}
-	
-	public int getMaxMana()
-	{
-		return maxMana;
 	}
 	
 	public void setPhysDamage(int dmg)

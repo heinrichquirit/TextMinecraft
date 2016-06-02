@@ -41,7 +41,7 @@ public class CommandMenu
 		Scanner input = new Scanner(System.in);
 		
 		Utils.print("==============================");
-		Utils.print("Input is case sensitive, please select an option.");
+		Utils.print("Please select an option.");
 		Utils.print("1. New Character");
 		Utils.print("2. Load Character");
 		Utils.print("3. View All Player Stats");
@@ -120,7 +120,6 @@ public class CommandMenu
 				{
 					String name = players.get(i).getName();
 					int health = players.get(i).getMaxHp();
-					int mana = players.get(i).getMaxMana();
 					int physDmg = players.get(i).getPhysDamage();
 					int magicDmg = players.get(i).getMagicDamage();
 					int cLvl = players.get(i).getCombatSkill().getSkillLevel();
@@ -131,7 +130,6 @@ public class CommandMenu
 					Object[] data = {
 										name,
 										health,
-										mana,
 										physDmg,
 										magicDmg,
 										cLvl,
@@ -190,7 +188,7 @@ public class CommandMenu
 			// run the battle through a loop, will be based on turn-based attacks, player attacks, then mob attacks
 			// then player attacks etc till their hp reaches 0
 			new KillMobsCommand().execute(player);
-			saveData(input);
+			//saveData(input);
 		}
 		else if (cmd.equalsIgnoreCase("exit"))
 		{

@@ -13,10 +13,9 @@ public class KillMobsCommand extends BaseCommand
 	{
 		cmd = "kill_mobs";
 		description = "Venture out and fight slimes or zombies to increase your damage output.\n"
-				+ "Have the option to attack mobs with magic and physical damage.\n"
 				+ "When you fight a mob, you have the option to use magic or physical damage.\n"
 				+ "Your damage will level up and multiplied by your original damage\n"
-				+ "according to which type of damage you use (2x, 3x, 4x, 5x, 6x).";
+				+ "according to which type of damage you use in combat (2x, 3x, 4x, 5x, 6x).";
 	}
 	
 	public void execute(Player player) {

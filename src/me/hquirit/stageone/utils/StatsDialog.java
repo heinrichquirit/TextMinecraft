@@ -21,7 +21,6 @@ public class StatsDialog extends JDialog
 		
 		stats = "Name: " + player.getName() + "\n"
 			  + "Max Hp: " + player.getMaxHp() + "\n"
-			  + "Max Mana: " + player.getMaxMana() + "\n"
 			  + "Physical Damage: " + player.getPhysDamage() + "\n"
 			  + "Magical Damage: " + player.getMagicDamage() + "\n"
 			  + "Combat Level: " + player.getCombatSkill().getSkillLevel() + "\n"
