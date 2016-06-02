@@ -8,19 +8,14 @@ public class Slime
 	private String animalType;
 	private int health;
 	private int attackDmg;
-	private int magicalResistance;
-	Random r = new Random();
-	int n = r.nextInt(11);
+	private double magicalResistance;
 	
 	public Slime()
 	{
 		animalType = "Slime";
 		health = 400;
 		attackDmg = 7;
-		if (n > 0) 
-		{
-			magicalResistance = n;
-		}
+		magicalResistance = 0.09;
 	}
 	
 	public Slime(String animalType, int health, int attackDmg)
@@ -28,10 +23,7 @@ public class Slime
 		animalType = "Slime";
 		setHealth(health);
 		setAttackDmg(attackDmg);
-		if (n > 0) 
-		{
-			magicalResistance = n;
-		}
+		magicalResistance = 0.09;
 	}
 	
 	public String getAnimalType()
@@ -59,7 +51,7 @@ public class Slime
 		return attackDmg;
 	}
 	
-	public int getMagicalResistance() 
+	public double getMagicalResistance() 
 	{
 		return magicalResistance;
 	}

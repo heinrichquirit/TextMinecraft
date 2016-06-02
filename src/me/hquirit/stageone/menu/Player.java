@@ -85,7 +85,22 @@ public class Player implements Serializable
 	
 	public int getPhysDamage()	
 	{
-		return physDmgOutput;
+		int combatLvl = cSkill.getSkillLevel();
+		switch(combatLvl) 
+		{
+			case 1:
+				return physDmgOutput *= 2;
+			case 2:
+				return physDmgOutput *= 3;
+			case 3:
+				return physDmgOutput *= 4;
+			case 4:
+				return physDmgOutput *= 5;
+			case 5:
+				return physDmgOutput *= 6;
+			default:
+				return physDmgOutput;
+		}
 	}
 	
 	public void setMagicDamage(int dmg)
@@ -95,7 +110,22 @@ public class Player implements Serializable
 	
 	public int getMagicDamage()
 	{
-		return mgcDmgOutput;
+		int mageLvl = mSkill.getSkillLevel();
+		switch(mageLvl) 
+		{
+			case 1:
+				return mgcDmgOutput *= 2;
+			case 2:
+				return mgcDmgOutput *= 3;
+			case 3:
+				return mgcDmgOutput *= 4;
+			case 4:
+				return mgcDmgOutput *= 5;
+			case 5:
+				return mgcDmgOutput *= 6;
+			default:
+				return mgcDmgOutput;
+		}
 	}
 	
 	public PlayerInventory getInventory()

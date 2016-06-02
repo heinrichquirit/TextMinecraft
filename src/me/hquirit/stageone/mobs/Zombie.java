@@ -8,19 +8,14 @@ public class Zombie
 	private String animalType;
 	private int health;
 	private int attackDmg;
-	private int physicalResistance;
-	Random r = new Random();
-	int n = r.nextInt(11);
+	private double physicalResistance;
 	
 	public Zombie()
 	{
 		animalType = "Zombie";
 		health = 300;
 		attackDmg = 10;
-		if (n > 0)
-		{
-			physicalResistance = n;
-		}
+		physicalResistance = 0.12;
 	}
 	
 	public Zombie(String animalType, int health, int attackDmg)
@@ -28,10 +23,7 @@ public class Zombie
 		animalType = "Zombie";
 		setHealth(health);
 		setAttackDmg(attackDmg);
-		if (n > 0)
-		{
-			physicalResistance = n;
-		}
+		physicalResistance = 0.12;
 	}
 	
 	public String getAnimalType()
@@ -59,7 +51,7 @@ public class Zombie
 		return attackDmg;
 	}
 	
-	public int getPhysicalResistance() 
+	public double getPhysicalResistance() 
 	{
 		return physicalResistance;
 	}
