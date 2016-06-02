@@ -75,7 +75,7 @@ public class ExploringSkill extends Skill implements Serializable
 		{
 			skillLevel += 0;
 		}
-		else if (skillLevel <= 5 && selectionCount == 3)
+		else if (skillLevel < 5 && selectionCount == 3)
 		{
 			skillLevel += 1;
 			selectionCount = 0;

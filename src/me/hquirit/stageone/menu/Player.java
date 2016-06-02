@@ -6,7 +6,7 @@ import me.hquirit.stageone.skills.CombatSkill;
 import me.hquirit.stageone.skills.ExploringSkill;
 import me.hquirit.stageone.skills.FarmingSkill;
 import me.hquirit.stageone.skills.MageSkill;
-import me.hquirit.stageone.utils.PlayerInventory;
+import me.hquirit.stageone.skills.PlayerInventory;
 import me.hquirit.stageone.utils.Utils;
 
 public class Player implements Serializable
@@ -40,8 +40,8 @@ public class Player implements Serializable
 		name = "";
 		maxHp = 100;
 		maxMana = 100;
-		physDmgOutput = 1;
-		mgcDmgOutput = 1;
+		physDmgOutput = 25;
+		mgcDmgOutput = 25;
 		inventory = new PlayerInventory();
 		// Skills
 		cSkill = new CombatSkill();

@@ -1,10 +1,11 @@
 package me.hquirit.stageone.commands;
 
+import java.awt.Dimension;
 import java.util.HashMap;
 import java.util.Map.Entry;
 
 import me.hquirit.stageone.menu.Player;
-import me.hquirit.stageone.utils.InventoryTable;
+import me.hquirit.stageone.utils.DataTable;
 import me.hquirit.stageone.utils.StatsDialog;
 
 public class ViewStatsCommand extends BaseCommand
@@ -38,10 +39,10 @@ public class ViewStatsCommand extends BaseCommand
 				count++;
 			}
 		}
-		InventoryTable table = new InventoryTable(data, columns);
+		DataTable table = new DataTable(data, columns, 300, 225);
 		StatsDialog dialog = new StatsDialog(player);
 		dialog.setLocationRelativeTo(table);
-		table.display(player.getName() + "'s Inventory");
+		table.display(player.getName() + "'s Inventory", 400, 275);
 		dialog.show();
 	}
 	

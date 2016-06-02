@@ -70,16 +70,13 @@ public class FarmingSkill extends Skill implements Serializable
 		}
 	}
 	
-	/*
-	 * N
-	 */
 	public void levelUp()
 	{
 		if (skillLevel == 5)
 		{
 			skillLevel += 0;
 		}
-		else if (skillLevel <= 5 && selectionCount == 3)
+		else if (skillLevel < 5 && selectionCount == 3)
 		{
 			skillLevel += 1;
 			selectionCount = 0;

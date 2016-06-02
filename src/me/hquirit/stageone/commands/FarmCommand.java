@@ -31,7 +31,7 @@ public class FarmCommand extends BaseCommand {
 		String wheat = "Wheat";
 		String seed = "Seed";
 		int amount = 1;
-		//Utils.debug(player.getFarmingSkill());
+		Utils.debug(player.getFarmingSkill());
 		if (n == 0)
 		{
 			if (player.getInventory().containsItem(wheat))
@@ -63,13 +63,11 @@ public class FarmCommand extends BaseCommand {
 		// If count is 3, level up skill
 		if (player.getFarmingSkill().getSelectionCount() == 3)
 		{
-			if (player.getFarmingSkill().getSkillLevel() == 5)
+			if (player.getFarmingSkill().getSkillLevel() <= 5)
 			{
-				return;
-				// Stop the user from leveling up
+				player.getFarmingSkill().levelUp();
+				player.sendMessage("You have leveled up! You are now level " + player.getFarmingSkill().getSkillLevel() + "!");
 			}
-			player.getFarmingSkill().levelUp();
-			player.sendMessage("You have leveled up! You are now level " + player.getFarmingSkill().getSkillLevel() + "!");
 		}
 		else
 		{

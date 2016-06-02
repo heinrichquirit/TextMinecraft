@@ -61,17 +61,15 @@ public class ExploreCommand extends BaseCommand
 		// If count is 3, level up skill
 		if (player.getExploringSkill().getSelectionCount() == 3)
 		{
-			if (player.getExploringSkill().getSkillLevel() == 5)
+			if (player.getExploringSkill().getSkillLevel() <= 5)
 			{
-				return;
-				// Stop the user from leveling up
+				player.getExploringSkill().levelUp();
+				player.sendMessage("You have leveled up! You are now level " + player.getExploringSkill().getSkillLevel() + "!");
 			}
-			player.getExploringSkill().levelUp();
-			player.sendMessage("You have leveled up! You are now level " + player.getExploringSkill().getSkillLevel() + "!");
 		}
 		else
 		{
-			player.getFarmingSkill().increaseCount();
+			player.getExploringSkill().increaseCount();
 		}
 	}
 	

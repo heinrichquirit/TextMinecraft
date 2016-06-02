@@ -1,23 +1,27 @@
 package me.hquirit.stageone.menu;
 
+import java.awt.Dimension;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
+import javax.swing.table.DefaultTableModel;
+
 import me.hquirit.stageone.commands.ExploreCommand;
 import me.hquirit.stageone.commands.FarmCommand;
+import me.hquirit.stageone.commands.KillMobsCommand;
 import me.hquirit.stageone.commands.ViewStatsCommand;
 import me.hquirit.stageone.utils.ObjectFileWriter;
+import me.hquirit.stageone.utils.TableFrame;
 import me.hquirit.stageone.utils.Utils;
 
 public class CommandMenu 
 {
 	/*
-	 * FIX: ITEM DROP AMOUNT FOR COAL AND COBBLE
-	 * COMPLETE: VIEW ALL PLAYER STATS
-	 * COMPLETE: KILL MOBS COMMAND
+	 * COMPLETE: View all player stats
+	 * COMPLETE: Kill mobs command
 	 */
 
 	private Player player = new Player();
@@ -97,7 +101,48 @@ public class CommandMenu
 				break;
 			case 3:
 				Utils.print("Viewing all player statistics in a window dialog, please wait...");
-				// Do stuff
+				List<Player> players = Stage1.getInstance().getPlayers();
+				int size = players.size();
+				String[] columns = {
+										"Name",
+										"Health",
+										"Mana",
+										"PhysDmg",
+										"MagicDmg",
+										"CombatLvl",
+										"ExploringLvl",
+										"FarmingLvl",
+										"MageLvl"
+								    };
+				DefaultTableModel model = new DefaultTableModel(columns, size);
+				TableFrame frame = new TableFrame("All Player Stats", model, 800, 400, new Dimension(700, 325));
+				for (int i=0; i<size; i++)
+				{
+					String name = players.get(i).getName();
+					int health = players.get(i).getMaxHp();
+					int mana = players.get(i).getMaxMana();
+					int physDmg = players.get(i).getPhysDamage();
+					int magicDmg = players.get(i).getMagicDamage();
+					int cLvl = players.get(i).getCombatSkill().getSkillLevel();
+					int eLvl = players.get(i).getExploringSkill().getSkillLevel();
+					int fLvl = players.get(i).getFarmingSkill().getSkillLevel();
+					int mLvl = players.get(i).getMageSkill().getSkillLevel();
+					
+					Object[] data = {
+										name,
+										health,
+										mana,
+										physDmg,
+										magicDmg,
+										cLvl,
+										eLvl,
+										fLvl,
+										mLvl
+									};
+					
+					frame.getTableModel().addRow(data);
+				}
+				frame.display();
 			default:
 				Utils.print("Option does not exist.");
 				runInitialMenu();
@@ -135,6 +180,18 @@ public class CommandMenu
 			new ExploreCommand().execute(player);
 			saveData(input);
 		}
+		else if (cmd.equalsIgnoreCase("kill_mobs"))
+		{
+			// an animal will spawn with randomly generated hp/dmg which will
+			// have a set min and max amount.
+			// combat approach 1:
+			// check whos phys/mgcdmg output is higher, determine winner by highest value
+			// combat approach 2:
+			// run the battle through a loop, will be based on turn-based attacks, player attacks, then mob attacks
+			// then player attacks etc till their hp reaches 0
+			new KillMobsCommand().execute(player);
+			saveData(input);
+		}
 		else if (cmd.equalsIgnoreCase("exit"))
 		{
 			Utils.print("You have exited the program.");
@@ -151,7 +208,7 @@ public class CommandMenu
 		File playerData = new File("players/" + player.getName() + ".dat");
 		ObjectFileWriter writer = new ObjectFileWriter(playerData, player);
 		writer.save();
-		Utils.print("Your progress has been saved.");
+		Utils.print("\nYour progress has been saved.");
 		Utils.print("==============================");
 		Utils.print("Would you like to continue? Hit y/n");
 		try 

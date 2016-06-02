@@ -6,7 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
-public class InventoryTable extends JFrame
+public class DataTable extends JFrame
 {
 	
 	/**
@@ -14,13 +14,12 @@ public class InventoryTable extends JFrame
 	 */
 	private static final long serialVersionUID = 8312871814769426636L;
 	
-	// Table representing player attr
 	private JTable table;
 	private JScrollPane jScroll;
 	private String[] columns;
 	private Object[][] data;
 	
-	public InventoryTable(Object[][] data, String[] columns) 
+	public DataTable(Object[][] data, String[] columns, int x, int y) 
 	{
 		setLayout(new FlowLayout());
 		this.columns = columns;
@@ -30,22 +29,23 @@ public class InventoryTable extends JFrame
 			private static final long serialVersionUID = 6640250866750612022L;
 
 			// Prevent user from editing table data
-			public boolean isCellEditable(int row, int column) {                
+			public boolean isCellEditable(int row, int column) 
+			{                
 				return false;
 			}
+			
 		};
 		
-		table.setPreferredScrollableViewportSize(new Dimension(300, 225));
+		setSize(x, y);
 		table.setFillsViewportHeight(true);
-		
 		jScroll = new JScrollPane(table);
 		add(jScroll);
 	}
 	
-	public void display(String title)	
+	public void display(String title, int x, int y)	
 	{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setSize(400, 275);
+		table.setPreferredScrollableViewportSize(new Dimension(x, y));
 		setResizable(false);
 		// Center window
 		setLocationRelativeTo(null);
