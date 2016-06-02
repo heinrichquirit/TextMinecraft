@@ -1,12 +1,12 @@
 package me.hquirit.stageone.utils;
 
-import java.text.DecimalFormat;
 import java.util.Random;
 import java.util.Scanner;
 
 import me.hquirit.stageone.menu.Player;
 import me.hquirit.stageone.mobs.Slime;
 import me.hquirit.stageone.mobs.Zombie;
+import me.hquirit.stageone.skills.Skill;
 
 public class CombatManager 
 {
@@ -49,18 +49,24 @@ public class CombatManager
 					{
 						if (slimeHp > 0)
 						{
-							playerAttack(player.getPhysDamage(), slimeHp);
+							slimeHp -= player.getPhysDamage();
+							player.sendMessage("You attacked slime for " + player.getPhysDamage() + " damage.");
+							player.sendMessage("Slime Hp: " + slimeHp); 
 						}
 						if (playerHp > 0) 
 						{
-							monsterAttack(playerHp, slime.getAttackDmg());
+							playerHp -= player.getPhysDamage();
+							player.sendMessage("Slime attacked you for " + slime.getAttackDmg() + " damage.");
+							player.sendMessage("Your Hp: " + playerHp);
 						}
-						if (slimeHp < 0) 
+						if (slimeHp == 0) 
 						{
+							player.sendMessage("You won the battle.");
 							break;
 						}
-						if (playerHp < 0)
+						if (playerHp == 0)
 						{
+							player.sendMessage("Slime wins the battle.");
 							break;
 						}
 					}
@@ -76,18 +82,24 @@ public class CombatManager
 					{
 						if (slimeHp > 0)
 						{
-							playerAttack(playerDmg, slimeHp);
+							slimeHp -= playerDmg;
+							player.sendMessage("You attacked slime for " + playerDmg + " damage.");
+							player.sendMessage("Slime Hp: " + slimeHp); 
 						}
 						if (playerHp > 0) 
 						{
-							monsterAttack(playerHp, slime.getAttackDmg());
+							playerHp -= playerDmg;
+							player.sendMessage("Slime attacked you for " + slime.getAttackDmg() + " damage.");
+							player.sendMessage("Your Hp: " + playerHp);
 						}
-						if (slimeHp < 0) 
+						if (slimeHp == 0) 
 						{
+							player.sendMessage("You won the battle.");
 							break;
 						}
-						if (playerHp < 0)
+						if (playerHp == 0)
 						{
+							player.sendMessage("Slime wins the battle.");
 							break;
 						}
 					}
@@ -124,18 +136,25 @@ public class CombatManager
 					{
 						if (zombieHp > 0)
 						{
-							playerAttack(playerDmg, zombieHp);
+							zombieHp -= playerDmg;
+							player.sendMessage("You attacked zombie for " + playerDmg + " damage.");
+							player.sendMessage("Zombie Hp: " + zombieHp); 
 						}
 						if (playerHp > 0) 
 						{
-							monsterAttack(playerHp, zombie.getAttackDmg());
+							playerHp -= zombie.getAttackDmg();
+							player.sendMessage("Zombie attacked you for " + zombie.getAttackDmg() + " damage.");
+							player.sendMessage("Your Hp: " + playerHp);
 						}
-						if (zombieHp < 0) 
+						if (zombieHp == 0) 
 						{
+							player.sendMessage("You won the battle.");
+							levelUpCombat();
 							break;
 						}
-						if (playerHp < 0)
+						if (playerHp == 0)
 						{
+							player.sendMessage("Zombie wins the battle.");
 							break;
 						}
 					}
@@ -147,25 +166,34 @@ public class CombatManager
 					{
 						if (zombieHp > 0)
 						{
-							playerAttack(player.getMagicDamage(), zombieHp);
+							zombieHp -= player.getMagicDamage();
+							player.sendMessage("You attacked zombie for " + player.getMagicDamage() + " damage.");
+							player.sendMessage("Zombie Hp: " + zombieHp); 
 						}
 						if (playerHp > 0) 
 						{
-							monsterAttack(playerHp, zombie.getAttackDmg());
+							playerHp -= zombie.getAttackDmg();
+							player.sendMessage("Zombie attacked you for " + zombie.getAttackDmg() + " damage.");
+							player.sendMessage("Your Hp: " + playerHp);
 						}
-						if (zombieHp < 0) 
+						if (zombieHp == 0) 
 						{
+							player.sendMessage("You won the battle.");
+							levelUpMage();
 							break;
 						}
-						if (playerHp < 0)
+						if (playerHp == 0)
 						{
+							player.sendMessage("Zombie wins the battle.");
 							break;
 						}
 					}
 					break;
 				default:
 					startCombat(player);
+					
 			}
+			
 		}
 	}
 	
@@ -203,24 +231,22 @@ public class CombatManager
 		player.sendMessage("|----------------------------|");
 	}
 	
-	public int playerAttack(int playerAtk, int monsterHp) 
+	public void levelUpCombat()
 	{
-		int j = 0;
-		// Returns monster's current hp
-		j = (monsterHp -= playerAtk);
-		player.sendMessage("You attacked for " + playerAtk + " damage.");
-		player.sendMessage("Monster has " + j + " hp left.");
-		return j;
+		if (player.getCombatSkill().getSkillLevel() <= 5)
+		{
+			player.getCombatSkill().levelUp();
+			player.sendMessage("You have leveled up! You are now level " + player.getCombatSkill().getSkillLevel() + "!");
+		}
 	}
 	
-	public int monsterAttack(int playerHp, int monsterAtk)
+	public void levelUpMage()
 	{
-		int j = 0;
-		// Return player's current hp;
-		j = (playerHp -= monsterAtk);
-		player.sendMessage("Monster attacked for " + monsterAtk + " damage.");
-		player.sendMessage("You have " + j + " hp left.");
-		return j;
+		if (player.getMageSkill().getSkillLevel() <= 5)
+		{
+			player.getMageSkill().levelUp();
+			player.sendMessage("You have leveled up! You are now level " + player.getMageSkill().getSkillLevel() + "!");
+		}
 	}
 	
 }

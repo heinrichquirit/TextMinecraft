@@ -31,7 +31,6 @@ public class FarmCommand extends BaseCommand {
 		String wheat = "Wheat";
 		String seed = "Seed";
 		int amount = 1;
-		Utils.debug(player.getFarmingSkill());
 		if (n == 0)
 		{
 			if (player.getInventory().containsItem(wheat))
