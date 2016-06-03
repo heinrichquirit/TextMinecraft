@@ -42,7 +42,7 @@ public class ViewStatsCommand extends BaseCommand
 		DataTable table = new DataTable(data, columns, 300, 225);
 		StatsDialog dialog = new StatsDialog(player);
 		dialog.setLocationRelativeTo(table);
-		table.display(player.getName() + "'s Inventory", 400, 275);
+		table.display(player.getName() + "'s Inventory", 300, 225);
 		dialog.show();
 	}
 	

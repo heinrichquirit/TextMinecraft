@@ -188,7 +188,7 @@ public class CommandMenu
 			// run the battle through a loop, will be based on turn-based attacks, player attacks, then mob attacks
 			// then player attacks etc till their hp reaches 0
 			new KillMobsCommand().execute(player);
-			//saveData(input);
+			saveData(input);
 		}
 		else if (cmd.equalsIgnoreCase("exit"))
 		{
