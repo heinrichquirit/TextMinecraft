@@ -59,12 +59,12 @@ public class CombatManager
 							player.sendMessage("Slime attacked you for " + slime.getAttackDmg() + " damage.");
 							player.sendMessage("Your Hp: " + playerHp);
 						}
-						if (slimeHp == 0) 
+						if (slimeHp <= 0) 
 						{
 							player.sendMessage("You won the battle.");
 							break;
 						}
-						if (playerHp == 0)
+						if (playerHp <= 0)
 						{
 							player.sendMessage("Slime wins the battle.");
 							break;
@@ -88,16 +88,16 @@ public class CombatManager
 						}
 						if (playerHp > 0) 
 						{
-							playerHp -= playerDmg;
+							playerHp -= slime.getAttackDmg();
 							player.sendMessage("Slime attacked you for " + slime.getAttackDmg() + " damage.");
 							player.sendMessage("Your Hp: " + playerHp);
 						}
-						if (slimeHp == 0) 
+						if (slimeHp <= 0) 
 						{
 							player.sendMessage("You won the battle.");
 							break;
 						}
-						if (playerHp == 0)
+						if (playerHp <= 0)
 						{
 							player.sendMessage("Slime wins the battle.");
 							break;
@@ -146,13 +146,13 @@ public class CombatManager
 							player.sendMessage("Zombie attacked you for " + zombie.getAttackDmg() + " damage.");
 							player.sendMessage("Your Hp: " + playerHp);
 						}
-						if (zombieHp == 0) 
+						if (zombieHp <= 0) 
 						{
 							player.sendMessage("You won the battle.");
 							levelUpCombat();
 							break;
 						}
-						if (playerHp == 0)
+						if (playerHp <= 0)
 						{
 							player.sendMessage("Zombie wins the battle.");
 							break;
@@ -176,13 +176,13 @@ public class CombatManager
 							player.sendMessage("Zombie attacked you for " + zombie.getAttackDmg() + " damage.");
 							player.sendMessage("Your Hp: " + playerHp);
 						}
-						if (zombieHp == 0) 
+						if (zombieHp <= 0) 
 						{
 							player.sendMessage("You won the battle.");
 							levelUpMage();
 							break;
 						}
-						if (playerHp == 0)
+						if (playerHp <= 0)
 						{
 							player.sendMessage("Zombie wins the battle.");
 							break;

@@ -8,7 +8,12 @@ import me.hquirit.stageone.skills.FarmingSkill;
 import me.hquirit.stageone.skills.MageSkill;
 import me.hquirit.stageone.skills.PlayerInventory;
 import me.hquirit.stageone.utils.Utils;
-
+/**
+ * Player class for managing player objects
+ * 
+ * @author heinrichquirit
+ *
+ */
 public class Player implements Serializable
 {
 
@@ -34,6 +39,9 @@ public class Player implements Serializable
 	private FarmingSkill fSkill;
 	private MageSkill mSkill;
 	
+	/**
+	 * Default constructor, that constructs the object with fixed values
+	 */
 	public Player()
 	{
 		name = "";
@@ -48,41 +56,74 @@ public class Player implements Serializable
 		mSkill = new MageSkill();
 	}
 	
+	/**
+	 * Sends a message to player
+	 * @param msg Message to send
+	 */
 	public void sendMessage(String msg)
 	{
 		Utils.print(msg);
 	}
 	
+	/**
+	 * Sends a formatted message to player
+	 * @param msg Message to send
+	 * @param args Arguments for flags in message
+	 */
 	public void sendFMessage(String msg, Object... args) 
 	{
 		System.out.printf(msg + "\n", args);
 	}
 	
+	/**
+	 * Sets the objects name to specified value
+	 * @param name Name of player
+	 */
 	public void setName(String name) 
 	{
 		this.name = name;
 	}
 	
+	/**
+	 * Returns the players name
+	 * @return players name
+	 */
 	public String getName() 
 	{
 		return name;
 	}
 	
+	/**
+	 * Sets the players max hp
+	 * @param maxHp Specified max hp
+	 */
 	public void setMaxHp(int maxHp)
 	{
 		this.maxHp = maxHp;
 	}
 	
+	/**
+	 * Returns the players max hp
+	 * @return max hp
+	 */
 	public int getMaxHp()
 	{
 		return maxHp;
 	}
 	
+	/**
+	 * Sets the players physical damage
+	 * @param dmg Physical Damage
+	 */
 	public void setPhysDamage(int dmg)
 	{
 		physDmgOutput = dmg;
 	}
 	
+	/**
+	 * Returns the players modified damage based on skill level
+	 * @return physical damage output
+	 */
 	public int getPhysDamage()	
 	{
 		int combatLvl = cSkill.getSkillLevel();
@@ -103,11 +144,19 @@ public class Player implements Serializable
 		}
 	}
 	
+	/**
+	 * Sets the players magic damage
+	 * @param dmg Magic Damage
+	 */
 	public void setMagicDamage(int dmg)
 	{
 		mgcDmgOutput = dmg;
 	}
 	
+	/**
+	 * Return the players magic damage
+	 * @return magic damage output
+	 */
 	public int getMagicDamage()
 	{
 		int mageLvl = mSkill.getSkillLevel();
@@ -128,26 +177,46 @@ public class Player implements Serializable
 		}
 	}
 	
+	/** 
+	 * Return player inventory contents
+	 * @return inventory
+	 */
 	public PlayerInventory getInventory()
 	{
 		return inventory;
 	}
 	
+	/**
+	 * Return players combat skill
+	 * @return combat skill
+	 */
 	public CombatSkill getCombatSkill()
 	{
 		return cSkill;
 	}
 	
+	/**
+	 * Return players exploring skill
+	 * @return exploring skill
+	 */
 	public ExploringSkill getExploringSkill()
 	{
 		return eSkill;
 	}
 	
+	/**
+	 * Return players farming skill
+	 * @return farming skill
+	 */
 	public FarmingSkill getFarmingSkill()
 	{
 		return fSkill;
 	}
 	
+	/**
+	 * Return players mage skill
+	 * @return mage skill
+	 */
 	public MageSkill getMageSkill()
 	{
 		return mSkill;
